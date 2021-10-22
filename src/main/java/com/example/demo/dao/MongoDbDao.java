@@ -2,20 +2,19 @@ package com.example.demo.dao;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-import com.example.demo.model.Mongo;
+import com.example.demo.model.Customer;
+import com.example.demo.model.MongoTestDocument;
 
 public interface MongoDbDao {
 
-    public Optional<Mongo> findByTitle(String title);
+    public Optional<MongoTestDocument> findByTitle(String title);
 
-    public List<Mongo> findAllByTitle(String lastName);
+    public List<MongoTestDocument> findAllByTitle(String lastName);
 
-    public void insertMongo(UUID id, String title);
-    
-    default void insertMongo(String title) {
-        UUID id = UUID.randomUUID();
-        insertMongo(id, title);
-    }
+    public void insertMongo(String title);
+
+    public String getCollection(String collectionName);
+
+    public List<Customer> findAll();
 }

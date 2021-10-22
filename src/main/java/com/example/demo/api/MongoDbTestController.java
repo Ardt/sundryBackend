@@ -3,7 +3,8 @@ package com.example.demo.api;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.model.Mongo;
+import com.example.demo.model.Customer;
+import com.example.demo.model.MongoTestDocument;
 import com.example.demo.service.MongoDbTestService;
 import com.mongodb.lang.NonNull;
 
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RequestMapping("api/v1/mongo")
 @RestController
+@RequestMapping("api/v1/mongo")
 public class MongoDbTestController {
 
     private final MongoDbTestService mongoDbTestService;
@@ -28,8 +29,13 @@ public class MongoDbTestController {
     }
 
     @GetMapping
+    public List<Customer> findAll() {
+        return mongoDbTestService.findAll();
+    }
+
+    @GetMapping(path = "/test")
     public String test() {
-        return "test";
+        return mongoDbTestService.getCollection("collectionNumber1");
     }
 
     @PostMapping
@@ -38,12 +44,12 @@ public class MongoDbTestController {
     }
 
     @GetMapping(path = "{title}")
-    public Optional<Mongo> findByTitle(String title) {
+    public Optional<MongoTestDocument> findByTitle(String title) {
         return mongoDbTestService.findByTitle(title);
     }
     
     @GetMapping(path = "{title}/all")
-    public List<Mongo> findAllByTitle(String title) {
+    public List<MongoTestDocument> findAllByTitle(String title) {
         return mongoDbTestService.findAllByTitle(title);
     }
 }
