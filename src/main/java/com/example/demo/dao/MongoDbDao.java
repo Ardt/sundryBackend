@@ -1,20 +1,24 @@
 package com.example.demo.dao;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.example.demo.model.Customer;
 import com.example.demo.model.MongoTestDocument;
 
 public interface MongoDbDao {
 
-    public Optional<MongoTestDocument> findByTitle(String title);
-
-    public List<MongoTestDocument> findAllByTitle(String lastName);
-
+    // Create MongoTestDocument
     public void insertMongo(String title);
 
-    public String getCollection(String collectionName);
+    // Read MongoTestDocument
+    public List<MongoTestDocument> findAll();
+    
+    // Read MongoTestDocument
+    public List<MongoTestDocument> findAllByTitle(String title);
 
-    public List<Customer> findAll();
+    // Delete MongoTestDocument
+    public void removeByTitle(String title);
+    
+    // Delete MongoTestDocument
+    public void removeAllByTitle(String title);
+
 }

@@ -1,9 +1,9 @@
 package com.example.demo.api;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.model.Customer;
 import com.example.demo.model.MongoTestDocument;
 import com.example.demo.service.MongoDbTestService;
 import com.mongodb.lang.NonNull;
@@ -11,6 +11,7 @@ import com.mongodb.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,28 +29,24 @@ public class MongoDbTestController {
         this.mongoDbTestService = mongoDbTestService;
     }
 
-    @GetMapping
-    public List<Customer> findAll() {
-        return mongoDbTestService.findAll();
-    }
-
-    @GetMapping(path = "/test")
-    public String test() {
-        return mongoDbTestService.getCollection("collectionNumber1");
-    }
-
     @PostMapping
     public void addMongo(@Validated @NonNull @RequestBody String title) {
         mongoDbTestService.insertMongo(title);
     }
 
-    @GetMapping(path = "{title}")
-    public Optional<MongoTestDocument> findByTitle(String title) {
-        return mongoDbTestService.findByTitle(title);
+    @GetMapping(path = "/")
+    public List<MongoTestDocument> findAll() {
+        return mongoDbTestService.findAll();
     }
-    
+
+    @GetMapping(path = "{title}")
+    public Optional<MongoTestDocument> findByTitle(@PathVariable("title") String title) {
+        return Optional.of(this.findAllByTitle(title).get(0));
+    }
+
     @GetMapping(path = "{title}/all")
-    public List<MongoTestDocument> findAllByTitle(String title) {
-        return mongoDbTestService.findAllByTitle(title);
+    public List<MongoTestDocument> findAllByTitle(@PathVariable("title") String title) {
+        List<MongoTestDocument> returnValue = mongoDbTestService.findAllByTitle(title);
+        return returnValue.isEmpty() ? Collections.emptyList() : returnValue;
     }
 }
