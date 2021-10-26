@@ -1,5 +1,6 @@
-package com.example.demo.dao;
+package com.example.demo.dao_impl;
 
+import com.example.demo.dao.PersonDao;
 import com.example.demo.model.Person;
 
 import org.springframework.stereotype.Repository;

@@ -1,10 +1,9 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.demo.dao.MongoDbDao;
-import com.example.demo.model.Mongo;
+import com.example.demo.model.MongoTestDocument;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,11 +24,19 @@ public class MongoDbTestService {
         mongoDbDao.insertMongo(title);
     }
 
-    public Optional<Mongo> findByTitle(String title) {
-        return mongoDbDao.findByTitle(title);
+    public List<MongoTestDocument> findAll() {
+        return mongoDbDao.findAll();
     }
-    
-    public List<Mongo> findAllByTitle(String title) {
+
+    public List<MongoTestDocument> findAllByTitle(String title) {
         return mongoDbDao.findAllByTitle(title);
+    }
+
+    public void deleteByTitle(String title) {
+        mongoDbDao.deleteByTitle(title);
+    }
+
+    public void removeByTitle(String title) {
+        mongoDbDao.removeByTitle(title);
     }
 }
