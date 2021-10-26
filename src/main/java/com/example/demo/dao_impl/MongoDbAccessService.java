@@ -38,12 +38,12 @@ public class MongoDbAccessService implements MongoDbDao {
     }
 
     @Override
-    public void removeByTitle(String title) {
-        // TODO Auto-generated method stub
+    public void deleteByTitle(String title) {
+        mongoTestDocumentRepository.deleteByTitle(title);
     }
 
     @Override
-    public void removeAllByTitle(String title) {
-        // TODO Auto-generated method stub
+    public void removeByTitle(String title) {
+        mongoTestDocumentRepository.removeByTitle(title);
     }
 }

@@ -10,6 +10,7 @@ import com.mongodb.lang.NonNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,15 @@ public class MongoDbTestController {
     public List<MongoTestDocument> findAllByTitle(@PathVariable("title") String title) {
         List<MongoTestDocument> returnValue = mongoDbTestService.findAllByTitle(title);
         return returnValue.isEmpty() ? Collections.emptyList() : returnValue;
+    }
+
+    @DeleteMapping(path = "{title}")
+    public void deleteByTitle(@PathVariable("title") String title) {
+        mongoDbTestService.deleteByTitle(title);
+    }
+
+    @DeleteMapping(path = "{title}/all")
+    public void removeByTitle(@PathVariable("title") String title) {
+        mongoDbTestService.removeByTitle(title);
     }
 }

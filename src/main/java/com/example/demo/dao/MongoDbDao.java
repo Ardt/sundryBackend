@@ -11,14 +11,13 @@ public interface MongoDbDao {
 
     // Read MongoTestDocument
     public List<MongoTestDocument> findAll();
-    
+
     // Read MongoTestDocument
     public List<MongoTestDocument> findAllByTitle(String title);
 
     // Delete MongoTestDocument
-    public void removeByTitle(String title);
-    
-    // Delete MongoTestDocument
-    public void removeAllByTitle(String title);
+    public void deleteByTitle(String title);
 
+    // Delete MongoTestDocument
+    public void removeByTitle(String title);
 }

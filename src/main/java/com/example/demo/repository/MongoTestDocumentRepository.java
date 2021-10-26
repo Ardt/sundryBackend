@@ -8,4 +8,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface MongoTestDocumentRepository extends MongoRepository<MongoTestDocument, String> {
     public List<MongoTestDocument> findByTitle(String title);
+    public void deleteByTitle(String title);
+    public void removeByTitle(String title);
 }

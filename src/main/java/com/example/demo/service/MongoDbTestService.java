@@ -31,4 +31,12 @@ public class MongoDbTestService {
     public List<MongoTestDocument> findAllByTitle(String title) {
         return mongoDbDao.findAllByTitle(title);
     }
+
+    public void deleteByTitle(String title) {
+        mongoDbDao.deleteByTitle(title);
+    }
+
+    public void removeByTitle(String title) {
+        mongoDbDao.removeByTitle(title);
+    }
 }
