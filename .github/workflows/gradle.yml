@@ -28,6 +28,9 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: SonarCloud Scan
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       uses: SonarSource/sonarcloud-github-action@v1.6
       with:
         projectBaseDir: .
