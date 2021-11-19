@@ -5,7 +5,7 @@ plugins {
     id "org.sonarqube" version "3.3"
 }
 
-group = 'com.example'
+group = 'com.ardt'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -39,7 +39,7 @@ test {
 
 jar {
     manifest {
-        attributes 'Title': 'My Application', 'Version': version, 'Main-Class': 'com.example.demo.jar.Main'
+        attributes 'Title': 'My Application', 'Version': version, 'Main-Class': 'com.ardt.sundry.jar.Main'
     }
     archiveName 'MyApp.jar'
     dependsOn configurations.runtimeClasspath
