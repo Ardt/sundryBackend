@@ -15,8 +15,7 @@ public class MongoDbTestService {
     private final MongoTestDao mongoDbDao;
 
     @Autowired
-    public MongoDbTestService(@Qualifier("MongoDB") MongoTestDao mongoDbDao)
-    {
+    public MongoDbTestService(@Qualifier("MongoDB") MongoTestDao mongoDbDao) {
         this.mongoDbDao = mongoDbDao;
     }
 

@@ -15,8 +15,7 @@ public class BasicLocationService {
     private final BasicLocationDao basicLocationDao;
 
     @Autowired
-    public BasicLocationService(@Qualifier("BasicLocation") BasicLocationDao basicLocationDao)
-    {
+    public BasicLocationService(@Qualifier("BasicLocation") BasicLocationDao basicLocationDao) {
         this.basicLocationDao = basicLocationDao;
     }
 

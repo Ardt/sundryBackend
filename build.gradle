@@ -39,9 +39,9 @@ test {
 
 jar {
     manifest {
-        attributes 'Title': 'My Application', 'Version': version, 'Main-Class': 'com.ardt.sundry.jar.Main'
+        attributes 'Title': 'SunDry', 'Version': version, 'Main-Class': 'com.ardt.sundry.jar.Main'
     }
-    archiveName 'MyApp.jar'
+    archiveName 'SunDryBackEnd.jar'
     dependsOn configurations.runtimeClasspath
     from {
         configurations.compileClasspath.collect {
