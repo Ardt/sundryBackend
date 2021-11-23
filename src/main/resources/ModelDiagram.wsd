@@ -1,0 +1,22 @@
+@startuml ModelDiagram
+
+User <|-- Review
+Review <|-- User
+Location <|-- Review
+
+User : ObjectId UserId
+User : String Name
+User : String email
+
+Review : ObjectId reviewId
+Review : ObjectId UserId
+Review : ObjectId LocationId
+Review : String body
+
+Location : ObjectId LocationId
+Location : int lat
+Location : int lng
+Location : String addrS
+Location : String addrT
+
+@enduml

@@ -2,3 +2,4 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://shinhybi:ylOUNZbs2CKEmMOp@clusterfordevonly.jnjj9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      auto-index-creation: true
