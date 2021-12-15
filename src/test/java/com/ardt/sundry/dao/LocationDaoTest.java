@@ -16,43 +16,41 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Optional;
 
-import com.ardt.sundry.model.Review;
+import com.ardt.sundry.model.Location;
 import com.ardt.sundry.util.RandomModel;
 
 @DataMongoTest
 @ExtendWith(SpringExtension.class)
 @EnableMongoRepositories("com.ardt.sundry.dao")
 @ComponentScan("com.ardt.sundry.dao")
-class ReviewDaoTest {
+class LocationDaoTest {
 
     @Autowired(required=true)
-    private ReviewDao reviewDao;
+    private LocationDao locationDao;
 
-    private Review initData;
+    private Location initData;
 
     @BeforeEach
     public void setup() {
-        String userId = "testUserId";
-        String locationId = "testLocationId";
-        initData = RandomModel.getRandomReview(userId, locationId);
+        initData = RandomModel.getRandomLocation();
     }
 
     @DisplayName("basic CRUD test")
     @Test
     void basicCRUDTest() throws Exception {
-        assertEquals(Optional.empty(), reviewDao.findById(initData.getId()));
+        assertEquals(Optional.empty(), locationDao.findById(initData.getId()));
 
-        reviewDao.insertReview(initData);
+        locationDao.insertLocation(initData);
+        assertNotNull(locationDao.findById(initData.getId()));
+        assertEquals(1, locationDao.findAll().size());
 
-        assertNotNull(reviewDao.findById(initData.getId()));
-        assertEquals(1, reviewDao.findAll().size());
         String changed = RandomStringUtils.random(10);
-        initData.setBody(changed);
+        initData.setName(changed);
+        locationDao.updateLocation(initData);
+        assertEquals(changed, locationDao.findById(initData.getId()).get().getName());
 
-        reviewDao.updateReview(initData);
-        assertEquals(changed, reviewDao.findById(initData.getId()).get().getBody());
-        reviewDao.deleteById(initData.getId());
-        assertEquals(Optional.empty(), reviewDao.findById(initData.getId()));
-        assertEquals(0, reviewDao.findAll().size());
+        locationDao.deleteById(initData.getId());
+        assertEquals(Optional.empty(), locationDao.findById(initData.getId()));
+        assertEquals(0, locationDao.findAll().size());
     }
 }

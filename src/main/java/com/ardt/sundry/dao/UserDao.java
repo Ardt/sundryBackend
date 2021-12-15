@@ -19,6 +19,9 @@ public interface UserDao {
     // Read User
     public Optional<User> findByEmail(String email);
 
+    // Update User
+    public String updateUser(User user);
+
     // Delete User
     public void deleteById(String id);
 }

@@ -74,7 +74,7 @@ class UserControllerTest {
         // Add object
         users.add(userDto.toUser());
         getMockedUser(users);
-        
+
         given(userService.findById(testUserId)).willReturn(
             users.stream()
                 .filter(review -> review.getId() == testUserId)
@@ -84,7 +84,7 @@ class UserControllerTest {
             users.stream()
                 .filter(review -> review.getEmail() == testEmail)
                 .findFirst());
-        
+
         mockMvc.perform(get(rootPath + "id/" + testUserId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

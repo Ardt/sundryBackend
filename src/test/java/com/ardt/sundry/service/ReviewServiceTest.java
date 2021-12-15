@@ -13,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class ReviewServiceTest {
+class ReviewServiceTest {
 
     @Mock
     private ReviewDao reviewDao;
@@ -22,7 +22,7 @@ public class ReviewServiceTest {
     private ReviewService reviewService;
 
     @Test
-    public void makeNewReview() throws Exception {
+    void makeNewReview() throws Exception {
         final Review review = RandomModel.getRandomReview("testUserId", "testLocationId");
 
         reviewService.insertReview(review);

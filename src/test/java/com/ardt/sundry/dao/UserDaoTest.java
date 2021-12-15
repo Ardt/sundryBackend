@@ -16,43 +16,43 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Optional;
 
-import com.ardt.sundry.model.Review;
+import com.ardt.sundry.model.User;
 import com.ardt.sundry.util.RandomModel;
 
 @DataMongoTest
 @ExtendWith(SpringExtension.class)
 @EnableMongoRepositories("com.ardt.sundry.dao")
 @ComponentScan("com.ardt.sundry.dao")
-class ReviewDaoTest {
+class UserDaoTest {
 
-    @Autowired(required=true)
-    private ReviewDao reviewDao;
+    @Autowired(required = true)
+    private UserDao user;
 
-    private Review initData;
+    private User initData;
 
     @BeforeEach
     public void setup() {
-        String userId = "testUserId";
-        String locationId = "testLocationId";
-        initData = RandomModel.getRandomReview(userId, locationId);
+        initData = RandomModel.getRandomUser();
     }
 
     @DisplayName("basic CRUD test")
     @Test
     void basicCRUDTest() throws Exception {
-        assertEquals(Optional.empty(), reviewDao.findById(initData.getId()));
+        assertEquals(Optional.empty(), user.findById(initData.getId()));
 
-        reviewDao.insertReview(initData);
+        user.insertUser(initData);
+        assertNotNull(user.findById(initData.getId()));
+        assertNotNull(user.findByEmail(initData.getEmail()));
+        assertEquals(1, user.findAll().size());
+        assertEquals(user.findByEmail(initData.getEmail()), user.findById(initData.getId()));
 
-        assertNotNull(reviewDao.findById(initData.getId()));
-        assertEquals(1, reviewDao.findAll().size());
         String changed = RandomStringUtils.random(10);
-        initData.setBody(changed);
+        initData.setName(changed);
+        user.updateUser(initData);
+        assertEquals(changed, user.findById(initData.getId()).get().getName());
 
-        reviewDao.updateReview(initData);
-        assertEquals(changed, reviewDao.findById(initData.getId()).get().getBody());
-        reviewDao.deleteById(initData.getId());
-        assertEquals(Optional.empty(), reviewDao.findById(initData.getId()));
-        assertEquals(0, reviewDao.findAll().size());
+        user.deleteById(initData.getId());
+        assertEquals(Optional.empty(), user.findById(initData.getId()));
+        assertEquals(0, user.findAll().size());
     }
 }

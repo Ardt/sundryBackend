@@ -36,6 +36,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public String updateUser(User user) {
+        userRepository.updateUser(user);
+        return user.toString();
+    }
+
+    @Override
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

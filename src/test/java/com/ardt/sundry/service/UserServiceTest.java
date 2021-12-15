@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+class UserServiceTest {
 
     @Mock
     private UserDao userDao;
@@ -23,21 +23,21 @@ public class UserServiceTest {
     private UserService locationService;
 
     @Test
-    public void basicTest() throws Exception {
+    void basicTest() throws Exception {
         final User location = RandomModel.getRandomUser();
 
         locationService.insertUser(location);
         verify(userDao).insertUser(location);
-        
+
         locationService.findAll();
         verify(userDao).findAll();
-        
+
         locationService.findByEmail(location.getEmail());
         verify(userDao).findByEmail(location.getEmail());
 
         locationService.findById(location.getId());
         verify(userDao).findById(location.getId());
-        
+
         locationService.deleteById(location.getId());
         verify(userDao).deleteById(location.getId());
     }

@@ -13,7 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class LocationServiceTest {
+class LocationServiceTest {
 
     @Mock
     private LocationDao locationDao;
@@ -22,7 +22,7 @@ public class LocationServiceTest {
     private LocationService locationService;
 
     @Test
-    public void basicTest() throws Exception {
+    void basicTest() throws Exception {
         final Location location = RandomModel.getRandomLocation();
 
         locationService.insertLocation(location);
@@ -30,13 +30,13 @@ public class LocationServiceTest {
 
         locationService.updateLocation(location);
         verify(locationDao).updateLocation(location);
-    
+
         locationService.findAll();
         verify(locationDao).findAll();
-    
+
         locationService.findAllById(location.getId());
         verify(locationDao).findById(location.getId());
-    
+
         locationService.deleteById(location.getId());
         verify(locationDao).deleteById(location.getId());
     }

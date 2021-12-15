@@ -6,7 +6,6 @@ import com.ardt.sundry.model.User;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends MongoRepository<User, String> {
-
+public interface UserRepository extends MongoRepository<User, String>, CustomUserRepository{
     Optional<User> findByEmail(String email);
 }

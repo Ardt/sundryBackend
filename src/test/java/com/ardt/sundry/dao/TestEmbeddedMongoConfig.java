@@ -1,9 +1,4 @@
 package com.ardt.sundry.dao;
-public class TestEmbeddedMongoConfig {
-}
-/*
-import com.mongodb.reactivestreams.client.MongoClient;
-import com.mongodb.reactivestreams.client.MongoClients;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodStarter;
 import de.flapdoodle.embed.mongo.config.IMongodConfig;
@@ -12,16 +7,16 @@ import de.flapdoodle.embed.mongo.config.Net;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import java.io.IOException;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+
 @TestConfiguration
-@EnableReactiveMongoRepositories(basePackages = {
-        "com.ardt.sundry.dao",
-        "com.ardt.sundry.repository"
-}, reactiveMongoTemplateRef = "userTestMongoTemplate")
+@EnableMongoRepositories(basePackages = "com.ardt.sundry.repository", mongoTemplateRef = "userTestMongoTemplate")
 public class TestEmbeddedMongoConfig {
     @Bean(initMethod = "start", destroyMethod = "stop")
     public MongodExecutable mongodExecutable() throws IOException {
@@ -36,9 +31,8 @@ public class TestEmbeddedMongoConfig {
     }
 
     @Bean("userTestMongoTemplate")
-    public ReactiveMongoTemplate mongoTemplate() throws IOException {
+    public MongoTemplate mongoTemplate() throws IOException {
         MongoClient mongo = MongoClients.create("mongodb://localhost:27017");
-        return new ReactiveMongoTemplate(mongo, "USER_TEST_DB");
+        return new MongoTemplate(mongo, "USER_TEST_DB");
     }
 }
-*/
