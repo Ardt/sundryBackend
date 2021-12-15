@@ -42,7 +42,7 @@ public class ReviewController {
 
     @GetMapping(path = "/{id}")
     public List<Review> findById(@Validated @NotNull @PathVariable("id") String id) {
-        List<Review> returnValue = reviewService.findAllById(id);
+        List<Review> returnValue = reviewService.findById(id);
         return returnValue.isEmpty() ? Collections.emptyList() : returnValue;
     }
 

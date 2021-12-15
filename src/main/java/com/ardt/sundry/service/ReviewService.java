@@ -23,23 +23,19 @@ public class ReviewService {
         reviewDao.insertReview(review);
     }
 
-    public void insertReview(String locatoin, String body) {
-        reviewDao.insertReview(locatoin, body);
+    public void updateReview(Review review) {
+        reviewDao.updateReview(review);
     }
 
     public List<Review> findAll() {
         return reviewDao.findAll();
     }
 
-    public List<Review> findAllById(String id) {
+    public List<Review> findById(String id) {
         return reviewDao.findAllById(id);
     }
 
     public void deleteById(String id) {
         reviewDao.deleteById(id);
-    }
-
-    public void removeById(String id) {
-        reviewDao.removeById(id);
     }
 }

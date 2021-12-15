@@ -7,10 +7,10 @@ import com.ardt.sundry.model.Review;
 public interface ReviewDao {
 
     // Create Review
-    public void insertReview(String location, String body);
-
     public void insertReview(Review review);
 
+    public void updateReview(Review review);
+    
     // Read Review
     public List<Review> findAll();
 
@@ -19,7 +19,4 @@ public interface ReviewDao {
 
     // Delete Review
     public void deleteById(String id);
-
-    // Delete Review
-    public void removeById(String id);
 }

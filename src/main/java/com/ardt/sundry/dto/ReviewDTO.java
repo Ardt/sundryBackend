@@ -15,10 +15,10 @@ import lombok.Setter;
 @Builder
 @Setter
 public class ReviewDTO {
-    @NonNull public String id;
-    private String userId;
-    private String locationId;
-    private String body;
+    private String id;
+    @NonNull public String userId;
+    @NonNull public String locationId;
+    @NonNull public String body;
 
     public Review toReview() {
         return Review.builder()

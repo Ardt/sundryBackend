@@ -27,6 +27,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+
+    implementation 'com.google.code.gson:gson:2.8.9'
 }
 
 jacoco {

@@ -2,8 +2,8 @@ package com.ardt.sundry.service;
 
 import static org.mockito.Mockito.verify;
 
-import com.ardt.sundry.dao.intf.LocationDao;
-import com.ardt.sundry.model.Location;
+import com.ardt.sundry.dao.intf.UserDao;
+import com.ardt.sundry.model.User;
 import com.ardt.sundry.util.RandomModel;
 
 import org.junit.jupiter.api.DisplayName;
@@ -15,23 +15,24 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 @ExtendWith(MockitoExtension.class)
-public class LocationServiceTest {
+public class UserServiceTest {
 
     @Mock
-    private LocationDao locationDao;
+    private UserDao userDao;
 
     @InjectMocks
-    private LocationService locationService;
+    private UserService locationService;
 
     @DisplayName("given object to save when save object using MongoDB template then object is saved")
     @Test
-    public void makeNewLocation() throws Exception {
-        final Location location = RandomModel.getRandomLocation();
+    public void makeNewUser() throws Exception {
+        final User location = RandomModel.getRandomUser();
 
-        locationService.insertLocation(location);
-
-        verify(locationDao).insertLocation(location);
-
-        // assertEquals(location.getId(), locationDao.findAll().get(0).getId());
+        locationService.insertUser(location);
+        
+        verify(userDao).insertUser(location);
+        
+        // assertEquals(locationService.findAll().get(0), location);
+        // assertEquals(location.getId(), userDao.findAll().get(0).getId());
     }
 }

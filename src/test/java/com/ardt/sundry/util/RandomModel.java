@@ -9,7 +9,7 @@ import org.apache.commons.lang3.RandomUtils;
 
 public class RandomModel {
 
-    public static Location getLocation() {
+    public static Location getRandomLocation() {
         return Location.builder()
             .id(RandomStringUtils.random(10))
             .lat(RandomUtils.nextDouble())

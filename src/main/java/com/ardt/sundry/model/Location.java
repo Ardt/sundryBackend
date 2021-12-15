@@ -8,7 +8,8 @@ import lombok.Builder;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
-@Data @Document(collection = "BasicLocation")
+@Data
+@Document(collection = "BasicLocation")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
