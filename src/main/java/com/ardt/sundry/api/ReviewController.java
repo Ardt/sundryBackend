@@ -2,6 +2,7 @@ package com.ardt.sundry.api;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.constraints.NotNull;
 
@@ -41,14 +42,13 @@ public class ReviewController {
     }
 
     @GetMapping(path = "/{id}")
-    public List<Review> findById(@Validated @NotNull @PathVariable("id") String id) {
-        List<Review> returnValue = reviewService.findById(id);
-        return returnValue.isEmpty() ? Collections.emptyList() : returnValue;
+    public Optional<Review> findById(@Validated @NotNull @PathVariable("id") String id) {
+        return reviewService.findById(id);
     }
 
     @PostMapping(path = "/")
     public void modifyReview(@Validated @NonNull @RequestBody ReviewDTO reviewDTO) {
-        reviewService.insertReview(reviewDTO.toReview());
+        reviewService.updateReview(reviewDTO.toReview());
     }
 
     @PutMapping(path = "/")

@@ -11,7 +11,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.ardt.sundry.dto.ReviewDTO;
 import com.ardt.sundry.model.Review;
@@ -26,7 +25,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import com.google.gson.Gson;
-
 @WebMvcTest(controllers = { ReviewController.class })
 class ReviewControllerTest {
     static final private String rootPath = "/api/v1/review/";
@@ -68,7 +66,7 @@ class ReviewControllerTest {
         given(reviewService.findById(reviewId)).willReturn(
             reviews.stream()
                 .filter(review -> review.getId() == reviewId)
-                .collect(Collectors.toList()));
+                .findFirst());
 
         // Get all object API test
         getMockedReview(reviews);
@@ -105,12 +103,12 @@ class ReviewControllerTest {
         given(reviewService.findById(reviewId)).willReturn(
             reviews.stream()
                 .filter(review -> review.getId() == reviewId)
-                .collect(Collectors.toList()));
+                .findFirst());
         
         mockMvc.perform(get(rootPath + reviewId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(gson.toJson(reviews)))
+                .andExpect(content().string(gson.toJson(reviews.get(0))))
                 .andDo(print());
 
                 // Delete object API Test
@@ -127,12 +125,12 @@ class ReviewControllerTest {
         given(reviewService.findById(reviewId)).willReturn(
             reviews.stream()
                 .filter(review -> review.getId() == reviewId)
-                .collect(Collectors.toList()));
+                .findFirst());
 
         mockMvc.perform(get(rootPath + String.format("/%s", reviewId))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(gson.toJson(reviews)))
+                .andExpect(content().string("null"))
                 .andDo(print());
     }
 }

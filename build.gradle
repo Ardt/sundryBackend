@@ -33,7 +33,6 @@ dependencies {
 
 jacoco {
   toolVersion = '0.8.7'
-  reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
 jacocoTestReport {
@@ -63,7 +62,7 @@ sonarqube {
     property "sonar.projectKey", "Ardt_sundryBackend"
     property "sonar.organization", "ardt"
     property "sonar.host.url", "https://sonarcloud.io"
-    property "sonar.jacoco.reportPaths", "${buildDir}/jacoco/jacoco.exec"
+    property "sonar.jacoco.reportPaths", "${buildDir}/jacoco/test.exec"
   }
 }
 

@@ -1,8 +1,9 @@
 package com.ardt.sundry.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import com.ardt.sundry.dao.intf.ReviewDao;
+import com.ardt.sundry.dao.ReviewDao;
 import com.ardt.sundry.model.Review;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class ReviewService {
         return reviewDao.findAll();
     }
 
-    public List<Review> findById(String id) {
-        return reviewDao.findAllById(id);
+    public Optional<Review> findById(String id) {
+        return reviewDao.findById(id);
     }
 
     public void deleteById(String id) {
