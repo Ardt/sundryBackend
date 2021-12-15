@@ -1,4 +1,4 @@
-package com.ardt.sundry.dao.intf;
+package com.ardt.sundry.dao;
 
 import java.util.List;
 import java.util.Optional;

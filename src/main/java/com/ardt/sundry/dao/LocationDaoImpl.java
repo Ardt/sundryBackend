@@ -1,9 +1,8 @@
-package com.ardt.sundry.dao.impl;
+package com.ardt.sundry.dao;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.ardt.sundry.dao.intf.LocationDao;
 import com.ardt.sundry.model.Location;
 import com.ardt.sundry.repository.LocationRepository;
 
@@ -27,7 +26,7 @@ public class LocationDaoImpl implements LocationDao {
     public List<Location> findAll() {
         return locationRepository.findAll();
     }
-
+    
     @Override
     public Optional<Location> findById(String id) {
         return locationRepository.findById(id);

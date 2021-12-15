@@ -2,36 +2,42 @@ package com.ardt.sundry.service;
 
 import static org.mockito.Mockito.verify;
 
-import com.ardt.sundry.dao.intf.ReviewDao;
+import com.ardt.sundry.dao.ReviewDao;
 import com.ardt.sundry.model.Review;
 import com.ardt.sundry.util.RandomModel;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
 @ExtendWith(MockitoExtension.class)
 public class ReviewServiceTest {
 
     @Mock
-    private ReviewDao locationDao;
+    private ReviewDao reviewDao;
 
     @InjectMocks
-    private ReviewService locationService;
+    private ReviewService reviewService;
 
-    @DisplayName("given object to save when save object using MongoDB template then object is saved")
     @Test
     public void makeNewReview() throws Exception {
-        final Review location = RandomModel.getRandomReview("testUserId", "testLocationId");
+        final Review review = RandomModel.getRandomReview("testUserId", "testLocationId");
 
-        locationService.insertReview(location);
+        reviewService.insertReview(review);
+        verify(reviewDao).insertReview(review);
 
-        verify(locationDao).insertReview(location);
+        reviewService.updateReview(review);
+        verify(reviewDao).updateReview(review);
 
-        // assertEquals(location.getId(), locationDao.findAll().get(0).getId());
+        reviewService.findAll();
+        verify(reviewDao).findAll();
+
+        reviewService.findById(review.getId());
+        verify(reviewDao).findById(review.getId());
+
+        reviewService.deleteById(review.getId());
+        verify(reviewDao).deleteById(review.getId());
     }
 }

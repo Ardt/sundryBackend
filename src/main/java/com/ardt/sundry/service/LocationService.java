@@ -3,7 +3,7 @@ package com.ardt.sundry.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.ardt.sundry.dao.intf.LocationDao;
+import com.ardt.sundry.dao.LocationDao;
 import com.ardt.sundry.model.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;

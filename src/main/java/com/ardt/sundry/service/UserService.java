@@ -3,7 +3,7 @@ package com.ardt.sundry.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.ardt.sundry.dao.intf.UserDao;
+import com.ardt.sundry.dao.UserDao;
 import com.ardt.sundry.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;

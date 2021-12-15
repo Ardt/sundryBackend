@@ -1,14 +1,12 @@
-package com.ardt.sundry.dao.impl;
+package com.ardt.sundry.dao;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.ardt.sundry.dao.intf.UserDao;
 import com.ardt.sundry.model.User;
 import com.ardt.sundry.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository("UserMongo")
@@ -16,9 +14,6 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     private UserRepository userRepository;
-
-    // @Autowired
-    // private MongoTemplate mongoTemplate;
 
     @Override
     public List<User> findAll() {
